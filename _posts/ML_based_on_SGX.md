@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "hello jekyll!"
-date:   2018-11-7 12:00:01
-categories: jekyll
-tags: jekyll
+title:  "基于SGX实现Machine learning"
+date:   2018-11-7 12:20:01
+categories: thoughts
+tags: ML SGX
 excerpt: test name cate tag stuff
 mathjax: true
 ---
