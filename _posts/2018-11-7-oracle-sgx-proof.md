@@ -4,7 +4,6 @@ title:  "oracle-sgx生成证据文件的格式和验证算法"
 date:   2018-11-06 16:20:01
 categories: thoughts
 tags: oracle SGX wolfssl
-excerpt: oracle-sgx生成证据文件的格式和验证算法
 ---
 
 * content
