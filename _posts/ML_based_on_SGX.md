@@ -4,9 +4,12 @@ title:  "基于SGX实现Machine learning"
 date:   2018-11-7 12:20:01
 categories: thoughts
 tags: ML SGX
-excerpt: test name cate tag stuff
-mathjax: true
+excerpt: 基于SGX实现Machine learning
 ---
+
+* content
+{:toc}
+
 
 ## 问题：
 
