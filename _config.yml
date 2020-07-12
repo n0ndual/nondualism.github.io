@@ -7,21 +7,15 @@
 
 # Site settings
 title: Void
-brief-intro: form is emptiness
+brief-intro: form is emptiness, emptiness is form
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://nondualism.github.io" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
 # other links
-#twitter_username: AugustineMurari
-#facebook_username: gaohaoyang.water
 github_username:  nondualism
 email: ade8yor@163.com
-#weibo_username: 3115521wh
-#zhihu_username: gaohaoyang
-#linkedIn_username: gaohaoyang
-#dribbble_username:
 
 description_footer: Faraway in the depths of the sky, Adi yogi is flowing like a river.
 
