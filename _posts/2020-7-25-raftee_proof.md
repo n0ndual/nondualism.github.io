@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "基于SGX实现Machine learning"
+title:  "rafteee安全性分析"
 date:   2020-07-25 12:20:01
 categories: thoughts
 tags: enclave SGX raftee
