@@ -74,53 +74,81 @@ tags: enclave SGX raftee
 1.  Prot<sub>raftee</sub>:
 
     on input "init" from Z:
+    
         初始化TEE，加载Prog<sub>raftee程序</sub>
+        
         通过F<sub>tee</sub> 调用Prog<sub>raftee的init方法</sub>，生成tls证书
+        
         把证书发给各个peer
+        
         启动定时器：每隔T<sub>timeout时间后</sub>，通过F<sub>tee</sub> 调用Prog<sub>raftee</sub> 的 periodic方法。
     
     on input "new<sub>entry</sub>" from Z:
+    
         通过F<sub>tee</sub> 调用 Prog<sub>raftee</sub> 中的"new<sub>entry</sub>"方法
+        
         达成共识后，返回该entry的序列号。
     
     on input "restart" from Z:
+    
         通过F<sub>tee</sub> 调用Prog<sub>raftee</sub> 中的"reload"方法，加载持久化的tls证书和日志
+        
         解密日志，成功通过的话，启动定时器：每隔T<sub>timeout时间后</sub>，通过F<sub>tee</sub> 调用Prog<sub>raftee</sub> 的 periodic方法。
     
     on receive "tls<sub>cert</sub>" from P<sub>j</sub>：
+    
         收到 peer 发来的证书后，通过F<sub>tee调用Prog</sub><sub>raftee</sub> 的add<sub>cert方法</sub>
+        
         如果验证发现该证书是在TEE中生成，把该证书加入到信任列表。
+        
         调用F<sub>ke</sub>，和 P<sub>j</sub> 进行key-exchange。
     
     on receive "tcp<sub>input</sub>" from P<sub>j</sub>:
+    
         收到 peer 发来的ct<sub>tcp</sub><sub>data</sub> 数据包后，通过F<sub>tee</sub> 调用Prog<sub>raftee</sub> 的 "tcp<sub>input</sub>"
+        
         收到F<sub>tee返回的</sub> ("tcp<sub>output</sub>", P<sub>k</sub>, tcp<sub>data</sub>) 后，
+        
         发送("tcp<sub>in</sub>", tcp<sub>data</sub>)给 P<sub>k</sub>
 
 2.  Prog<sub>raftee</sub>:
 
     on input "init" from F<sub>tee</sub>:
+    
         生成tls 私钥，公钥，自签名证书
+        
         返回 自签名证书 给 F<sub>tee</sub>.
     
     on input "new<sub>entry</sub>" from F<sub>tee</sub>:
+    
         调用F<sub>raft</sub> 中的"new<sub>entry</sub>"方法。
+        
         把结果返回给F<sub>tee</sub>.
     
     on receive "tls<sub>cert</sub>" from F<sub>tee</sub>：
+    
         如果验证发现该证书是在TEE中生成，把该证书加入到信任列表。
+        
         结果返回给F<sub>tee</sub>.
     
     on receive "tcp<sub>input</sub>" from F<sub>tee</sub>:
+    
         解密tcp输入，pt<sub>tcp</sub><sub>input</sub> = SE<sub>key.decrypt</sub>(ct<sub>tcp</sub><sub>input</sub>).
+        
         把 pt<sub>input</sub><sub>data</sub> 传给 F<sub>raft</sub>, 收到结果（"raft<sub>ouput</sub>", P<sub>k</sub>, raft<sub>output</sub>).
+        
         加密，ct<sub>tcp</sub><sub>out</sub> = SE<sub>key.encrypt</sub>(raft<sub>output</sub>)
+        
         发送("tcp<sub>output</sub>", P<sub>k</sub>, tcp<sub>data</sub>) 给 F<sub>tee</sub>
     
     on receive "reload" from F<sub>tee</sub>:
+    
         解密ct<sub>logs</sub>, ct<sub>tls</sub><sub>cert</sub>
+        
         加载cert，
+        
         调用F<sub>raft的加载logs</sub>
+        
         结果返回给F<sub>tee</sub>
 
 3.  Prog<sub>raft</sub>:
@@ -133,9 +161,13 @@ tags: enclave SGX raftee
 ## 证明过程：
 
 主要参考论文：
+
 《Universally Composable Security: A New Paradigm for Cryptographic Protocols》
+
 《Formal Abstractions for Attested Execution Secure Processors》
+
 《Sealed-Glass Proofs: Using Transparent Enclaves to Prove and Sell Knowledge》
+
 《Teechain: A Secure Payment Network with Asynchronous Blockchain Access》
 
 
@@ -146,9 +178,13 @@ tags: enclave SGX raftee
 1.  UC—realize的证明方法简介
 
     所有的部分都形式化以后，使用UC框架 相对简单了。
+    
     在UC框架中分为现实世界和理想世界。
+    
     在现实世界中的Prot<sub>raftee</sub>, 面临着A（byzantine advarsary）的攻击。
+    
     在理想世界中的F<sub>raft</sub>（原始的raft协议），面临着假想的S （simulator，自己构造）的攻击。
+    
     
     Z(environment 外部环境)无法区分它所观察到的是Prot<sub>raftee</sub>+A，还是 F<sub>raft</sub> + S，就意味着 Prot<sub>raftee</sub> UC-realizes F<sub>raft</sub>。
 
