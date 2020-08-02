@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "面试套路思考"
-date:   2018-11-06 12:20:01
+date:   2020-7-30 12:20:01
 categories: thoughts
 tags: interview
 ---
@@ -27,8 +27,7 @@ tags: interview
     3.  [职业生涯中的重要变化](#org4c19619)
 5.  [面试流程总结：](#org5f7c02b)
 
-关于面试的思考
-
+总结最近面试的一些经验，形成一些套路，有助于以后节约时间，不用太耗费脑力。或许也能帮助到其他同事。
 
 <a id="orgf403d58"></a>
 
