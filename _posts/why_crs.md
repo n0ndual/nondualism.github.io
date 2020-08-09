@@ -1,0 +1,66 @@
+
+# Table of Contents
+
+1.  [为什么需要crs和trusted setup](#orgbdc21bc)
+2.  [构造crs模型为了满足deniability](#org98add2b)
+    1.  [deniablitity in commitment schema](#orgb0d742b)
+    2.  [crs 用于 extraction](#org81344df)
+    3.  [如果没有crs，标准模型下不存在UC-secure的 commitment schema](#orgba25640)
+    4.  [零知识证明中使用crs模型](#org6b21f26)
+
+
+<a id="orgbdc21bc"></a>
+
+# 为什么需要crs和trusted setup
+
+在密码学中deniablity属性是很重要的。某个多方参与的协议中，作恶者可能的一种攻击方式是，收集他和其他参与者的通信，泄露给协议外的某方，用来证明某个参与者和某个协议的存在，以及某个参与者在协议中暴露了某些信息。deniability属性是为了防止这种攻击。
+一个满足deniablity属性的密码学协议，任何一方都能否认自己参与了某个协议，作恶者无法提供有效的证据。
+
+比如，tls协议是满足deniability的，因此需要预言机。大多数研究论文也非常重视deniability。commitment schema, 零知识证明协议，多方安全计算协议都满足deniability。一般来说，为了满足deniability属性，使协议变得更复杂。在现实世界中，non-deniability似乎是更重要的特性，应用更广泛。为什么学术界这么重视deniability？
+
+个人猜测：读一些密码学非常早期的论文，发现开创相关研究领域的大佬们关注的是保护吹哨人，电子投票系统之类的政治问题。在这些应用场景中，deniablility很关键。这么多年学术研究可能都在朝着这些大佬们的愿景前进。但是，匿名、可验证、不可操纵的电子投票系统至今在美国还没法实现，因为这样一个系统需要用到很多密码学协议，其中一些协议基于现实世界无法满足的假设，一些协议性能不够好。未来密码学的研究，估计仍然会很重视deniability属性。
+
+
+<a id="org98add2b"></a>
+
+# 构造crs模型为了满足deniability
+
+
+<a id="orgb0d742b"></a>
+
+## deniablitity in commitment schema
+
+在commitment schema 中equivocability指的就是deniability?
+
+在UC框架下证明commitment schema 满足deniability的过程:
+
+common reference string 是各方在协议开始前就达成共识的一个随机字符串。诚实的参与者必须对crs保密。作恶的参与者可以对外泄漏crs，但是无法向外界证明crs的正确性。
+
+但是理想世界中的Simulator，知道crs是怎么生成的。能够解决其中的tradoor函数。crs = G<sub>pk</sub><sub>0</sub>(r<sub>0</sub>) + G<sub>pk</sub><sub>1</sub>(r<sub>1</sub>)。理想世界中的S在crs中嵌入了后门。
+
+这样，如果committer向外人泄漏真实的b，那么Simulator也能向外泄漏真实的b。
+
+对应于现实世界中，如果committer向外泄漏他和prover之间的所有通信。那么prover只需要否认他不知道这个crs。这个crs可能是committer自己伪造的。
+
+
+<a id="org81344df"></a>
+
+## crs 用于 extraction
+
+在commitment schema 中crs的另一个作用是extraction。
+
+如果advarsary向外泄密，理想世界中的S也必须能够向外泄密。可以构造S，使S知道crs的trapdoor，能抽取出其中的密文commited value。
+
+
+<a id="orgba25640"></a>
+
+## 如果没有crs，标准模型下不存在UC-secure的 commitment schema
+
+证明方法，假设S 模拟A
+再构造一个和S沟通的A'，不存在S' 模拟A'
+
+
+<a id="org6b21f26"></a>
+
+## 零知识证明中使用crs模型
+
