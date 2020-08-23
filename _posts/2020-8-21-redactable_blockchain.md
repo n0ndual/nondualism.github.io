@@ -265,7 +265,7 @@ chamelon hash 必须有。可以用TEE来保护chameleon hash私钥。TEE替换�
 
 <a id="org12de782"></a>
 
-### q6 思考
+## q6 思考
 
 虽然有依赖chameleon hash和不依赖chameleon hash 两种方案。
 
