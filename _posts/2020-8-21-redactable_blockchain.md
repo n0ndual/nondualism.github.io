@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "基于SGX实现Machine learning"
+title:  "redactalbe blockchain"
 date:   2020-8-21 12:20:01
 categories: thoughts
 tags: chameleon hash redactable blockchain tee
@@ -87,7 +87,7 @@ tags: chameleon hash redactable blockchain tee
 
 <a id="orgf006f3f"></a>
 
-# 可编辑从技术上，分为两类问题：
+# 可编辑从技术上，分为三类问题：
 
 
 <a id="org88d26e1"></a>
@@ -101,6 +101,7 @@ tags: chameleon hash redactable blockchain tee
 
 ## 回滚交易 (q6)
 
+回滚交易，等于逻辑删除。交易原始数据本身还存在链上，但是被认定为无效。
 
 <a id="orgfd6d4f0"></a>
 
@@ -119,12 +120,12 @@ tags: chameleon hash redactable blockchain tee
 
 是否允许交易回滚，是共识机制问题，不是技术问题。
 
-假设三种交易回滚策略：
+分四种情况讨论：
 
 
 <a id="org4990de6"></a>
 
-## 协商一致回滚
+## S和R协商一致回滚
 
 交易的双方，发起者S 和接收者R都同意，允许回滚。
 
@@ -139,6 +140,9 @@ tags: chameleon hash redactable blockchain tee
 
 所有参与者pos投票，委员会投票，硬分叉用脚站队，特权机构仲裁。
 
+## S和R无异议，监管部门认定不合规
+
+由监管部门审核决定，无需参与者投票，应该直接生效。
 
 <a id="org8f539c1"></a>
 
@@ -186,7 +190,7 @@ t2包含了构造出的另一个交易t1'，使hash(t1') = hash(t1)。
 
 <a id="orgfc63a34"></a>
 
-# 缺陷：
+# 可编辑区块链的缺陷：
 
 
 <a id="org02f4ba2"></a>
@@ -208,8 +212,7 @@ t2包含了构造出的另一个交易t1'，使hash(t1') = hash(t1)。
 
 ## 修改在区块粒度，性能差？
 
-埃森哲原版方案是在区块粒度修改，很容易将其修改为在交易级别。
-
+Accenture原版方案是在区块粒度修改，很容易将其修改为在交易级别。
 
 <a id="org77d7309"></a>
 
@@ -231,17 +234,13 @@ t2包含了构造出的另一个交易t1'，使hash(t1') = hash(t1)。
 
 <a id="org0405840"></a>
 
-# 改进思路：
-
-首先，考虑是否可以使用TEE替换chameleon hash。然后从实用性和技术实现的角度重新思考q5,q6,q7 三个问题。
-
+# 现有方案改进思路：
 
 <a id="orgc9abd22"></a>
 
 ## TEE 替换chameleon hash？
 
 chamelon hash 必须有。可以用TEE来保护chameleon hash私钥。TEE替换的是私钥的保管使用的方案。
-
 
 <a id="org8bc14f1"></a>
 
