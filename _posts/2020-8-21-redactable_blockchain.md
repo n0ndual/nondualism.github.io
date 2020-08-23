@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "基于SGX实现Machine learning"
-date:   2018-11-06 12:20:01
+date:   2020-8-21 12:20:01
 categories: thoughts
-tags: ML SGX
+tags: chameleon hash redactable blockchain tee
 ---
 
 * content
