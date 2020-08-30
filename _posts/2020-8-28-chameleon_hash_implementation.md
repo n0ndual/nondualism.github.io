@@ -60,7 +60,7 @@ Krawczyk, Hugo, and Tal Rabin. "Chameleon hashing and signatures." (1998).
 
 Chen, Xiaofeng, Fangguo Zhang, and Kwangjo Kim. "Chameleon hashing without key exposure." International Conference on Information Security. Springer, Berlin, Heidelberg, 2004.
 
-西安电子科技大学的陈晓峰教授挖了一个好坑，该论文应用很多。他指出了chameleon hash的trapdoor私钥暴露的问题，并且提出了一种新的方法，使得trapdoor不会暴露。
+西安电子科技大学的陈晓峰教授挖了一个好坑，该论文引用很多。他指出了chameleon hash的trapdoor私钥暴露的问题，并且提出了一种新的方法，使得trapdoor不会暴露。
 
 但是同样地，如果接收者伪造出一个假消息，签名者就可以继续伪造消息。同样地，在不关注应用的密码学研究中，这个可能不算是问题，反而算是优势。
 
@@ -90,7 +90,7 @@ Ateniese还挖了一个坑，在identity-based的系统中是否有同时满足�
 
 陈晓峰填了上述Ateniese挖的坑。
 
-Identity-based system 不是目前主流的方式，不考虑了。
+经查阅，Identity-based 不是目前主流的方式，不考虑了。
 
 
 <a id="org9e0ef99"></a>
