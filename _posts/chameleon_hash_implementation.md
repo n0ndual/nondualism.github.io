@@ -60,7 +60,7 @@ Krawczyk, Hugo, and Tal Rabin. "Chameleon hashing and signatures." (1998).
 
 Chen, Xiaofeng, Fangguo Zhang, and Kwangjo Kim. "Chameleon hashing without key exposure." International Conference on Information Security. Springer, Berlin, Heidelberg, 2004.
 
-西安电子科技大学的陈晓峰教授挖了一个好坑，该论文应用很多。他指出了chameleon hash的trapdoor私钥暴露的问题，并且提出了一种新的方法，使得trapdoor不会暴露。
+西安电子科技大学的陈晓峰教授挖了一个好坑，该论文引用很多。他指出了chameleon hash的trapdoor私钥暴露的问题，并且提出了一种新的方法，使得trapdoor不会暴露。
 
 但是同样地，如果接收者伪造出一个假消息，签名者就可以继续伪造消息。同样地，在不关注应用的密码学研究中，这个可能不算是问题，反而算是优势。
 
@@ -105,8 +105,7 @@ Ateniese, Giuseppe, et al. "Sanitizable signatures." European Symposium on Resea
 
 因为在受限修改签名消息的场景中，原始消息m和修订消息m'都是合法的，但是不希望其他人能伪造出新的m''。
 
-理论上，该方法在可修订区块链方面就可以使用了。
-
+理论上，可修订区块链方面，使用类似该算法的方法就可以了。
 
 <a id="orgb289c96"></a>
 
@@ -131,7 +130,6 @@ For the sake of concreteness and practicality, we chose to work with the (public
 作者自己原论文中的算法是否真的不适用，目前我还无法判断。但既然作者自己就基于他原论文中的方法实现，我们也可以用吧。
 
 总之，这篇论文是读的这些论文中最不清晰的。
-
 
 <a id="org6670049"></a>
 
