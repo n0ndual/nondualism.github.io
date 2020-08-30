@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "chameleon hash的实现"
-date:   2020-08-29 12:20:01
+date:   2020-08-28 12:20:01
 categories: thoughts
 tags: chameleon hash redactable blockchain
 ---
